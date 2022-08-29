@@ -19,3 +19,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+int a = 600000;
