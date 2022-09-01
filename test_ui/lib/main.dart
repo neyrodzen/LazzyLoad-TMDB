@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/userprofile.dart';
+import 'widgets/app.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: UserProfile(),
+    home: Scaffold(backgroundColor: Colors.white, body: App()),
   ));
 }
