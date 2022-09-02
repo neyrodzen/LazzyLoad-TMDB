@@ -2,42 +2,40 @@
 
 import 'package:flutter/material.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    const List<String> textData = ["1", "2", "3", "4", "5"];
-    //  final List<Widget> textFields = [];
-
-    final newTextData = textData
-        .map((text) => TextWrapper(
-              text: text,
-              text2: text,
-            ))
-        .toList();
-
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: newTextData,
-    ));
-  }
+  State<App> createState() => _AppState();
 }
 
-class TextWrapper extends StatelessWidget {
-  final String text;
-  final String text2;
+class _AppState extends State<App> {
+  final controller = ScrollController(initialScrollOffset: 2000.0);
 
-  const TextWrapper({required this.text, required this.text2, Key? key})
-      : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      print('$controller.offset');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(text),
-        const Spacer(),
-        Text(text2),
-      ],
+    final list = <Widget>[];
+    for (int i = 0; i < 200; i++) {
+      list.add(Text('$i'));
+    }
+    return SingleChildScrollView(
+      controller: controller,
+      // ignore: sized_box_for_whitespace
+      child: Container(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: list,
+        ),
+      ),
     );
   }
 }
