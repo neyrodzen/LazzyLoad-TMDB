@@ -13,20 +13,23 @@ class Auth extends StatefulWidget {
 class _AuthState extends State<Auth> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(20.0),
-      children: [
-        const HeaderWidget(),
-        Row(
-          children: [
-            Buttons(text: "Register", color: Colors.blue),
-            Buttons(text: "Verify Email", color: Colors.blue),
-          ],
-        ),
-        const SizedBox(height: 30),
-        FormWidget(),
-        const SizedBox(height: 30),
-      ],
+    return Scaffold(
+      appBar: AppBar(title: const Center(child: Text("Login to your account"))),
+      body: ListView(
+        padding: EdgeInsets.all(20.0),
+        children: [
+          const HeaderWidget(),
+          Row(
+            children: [
+              Buttons(text: "Register", color: Colors.blue),
+              Buttons(text: "Verify Email", color: Colors.blue),
+            ],
+          ),
+          const SizedBox(height: 30),
+          FormWidget(),
+          const SizedBox(height: 30),
+        ],
+      ),
     );
   }
 }
@@ -86,14 +89,14 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  final loginController = TextEditingController();
-  final passController = TextEditingController();
+  final loginController = TextEditingController(text: 'admin');
+  final passController = TextEditingController(text: 'admin');
   String? errorText = ' ';
 
   // ignore: non_constant_identifier_names
   void _Auth() {
     if (loginController.text == "admin" && passController.text == "admin") {
-      errorText = null;
+      Navigator.of(context).pushNamed('/main_screen');
     } else {
       errorText = "Error auth";
     }
@@ -178,8 +181,6 @@ class _ButtonsState extends State<Buttons> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {},
-      // style:
-      //     ButtonStyle(backgroundColor: MaterialStateProperty.all(widget.color)),
       child: Text(
         widget.text,
         //  style: TextStyle(color: Colors.white),
