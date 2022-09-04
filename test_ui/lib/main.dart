@@ -13,6 +13,11 @@ void main() {
         appBarTheme: const AppBarTheme(
           backgroundColor: MyColors.darkBlue,
         ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: MyColors.darkBlue,
+          selectedIconTheme: IconThemeData(color: Colors.blue),
+          unselectedIconTheme: IconThemeData(color: Colors.blueGrey),
+        ),
       ),
       routes: {
         '/': (context) => Auth(),
